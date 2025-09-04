@@ -1,103 +1,178 @@
+"use client";
+import { useState } from "react";
+import { Switch } from "@/components/ui/switch";
 import Image from "next/image";
+import { Separator } from "@/components/ui/separator";
+import confetti from "canvas-confetti";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [value, setValue] = useState(50);
+  const [billing, setBilling] = useState(false);  
+  const pageviews = ["10K", "50K", "100K", "500K", "1M"];
+  const prices = [8, 12, 16, 24, 36];
+  const index = Math.round((value / 100) * (prices.length - 1));
+  const displayPrice = billing
+    ? Math.round(prices[index] * 0.75)
+    : prices[index];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="relative dark:bg-[#10131c] bg-[#fafbff] min-h-screen flex justify-center items-start md:items-center text-[#858fad]">
+      {/* Top SVG background */}
+      <div className="w-full md:h-120 h-100 bg-[url('/images/bg-pattern.svg')] dark:bg-none dark:bg-[#173dbb2d] dark:rounded-bl-[30%]  bg-cover bg-center absolute top-0 left-0"></div>
+
+      {/* Centered content */}
+      <div className="relative z-10 flex flex-col gap-16 w-11/12 max-w-md md:max-w-lg text-center ">
+        {/* Heading */}
+        <div className="relative h-40 flex flex-col items-center justify-center gap-2 mt-10 lg:mt-0 text-[#293356] dark:text-[#00ffea] animate-float">
+          {/* Background circles */}
+          <div className="absolute inset-0 bg-[url('/images/pattern-circles.svg')] bg-no-repeat bg-center dark:invert dark:brightness-74" />
+
+          {/* Content above */}
+          <h1 className="text-3xl font-bold relative z-10">
+            Simple, traffic based pricing
+          </h1>
+          <p className="text-[15px] relative z-10">
+            Sign-up for 30-day trial. No credit card required.
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Pricing Card */}
+        <div className="bg-white dark:bg-[#232b48] shadow-lg flex flex-col items-center gap-4 dark:text-[#a7b3b2] text-slate-500 px-4 py-14 mb-16 md:mb-0 ">
+          {/* Price info */}
+          <div className="w-full hidden md:block">
+            <div className="text-lg flex justify-between w-full p-2 items-center">
+              <span>{pageviews[index]} PAGEVIEWS</span>
+              <span className="flex items-center">
+                <span className="text-slate-900 dark:text-[#adf4ec] text-4xl font-semibold transition-all duration-300 tracking-tighter">
+                  ${displayPrice}.00
+                </span>
+                /&nbsp;month
+              </span>
+            </div>
+
+            {/* Slider */}
+            <div className="w-full p-4">
+              <input
+                title="pricing"
+                type="range"
+                min={0}
+                max={100}
+                value={value}
+                onChange={(e) => setValue(Number(e.target.value))}
+                className="w-full"
+                style={{ "--slider-fill": `${value}%` } as React.CSSProperties}
+              />
+            </div>
+          </div>
+          <div className="w-full md:hidden flex flex-col gap-4">
+            <span>{pageviews[index]} PAGEVIEWS</span>
+
+            {/* Slider */}
+            <div className="w-full p-4">
+              <input
+                title="pricing"
+                type="range"
+                min={0}
+                max={100}
+                value={value}
+                onChange={(e) => setValue(Number(e.target.value))}
+                className="w-full"
+                style={{ "--slider-fill": `${value}%` } as React.CSSProperties}
+              />
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-slate-900 dark:text-[#adf4ec] text-4xl font-semibold transition-all duration-300 tracking-tighter">
+                ${displayPrice}.00
+              </span>
+              /&nbsp;month
+            </div>
+          </div>
+
+          {/* Billing Switch */}
+          <div className="flex gap-4 text-sm items-center py-6 justify-center md:justify-around w-full">
+            <span className="flex items-center gap-2">
+              Monthly Billing
+              <Switch
+                checked={billing}
+                onCheckedChange={setBilling}
+                className="transition-colors duration-300"
+                aria-label="Toggle billing cycle"
+              />
+            </span>
+            <span className="flex items-center gap-2">
+              Yearly Billing
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span className="bg-[hsl(14,92%,95%)] dark:bg-[#f47a51] text-[#ff8c66] dark:text-[#fff] py-1 px-2 rounded-sm transition-colors duration-300 cursor-help">
+                      25% discount
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Save 3 months worth when billed yearly.</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </span>
+          </div>
+
+          <Separator />
+
+          {/* Features + Button */}
+          <div className="flex flex-col md:flex-row gap-6 items-center justify-around p-4 w-full">
+            <ul className="list-none space-y-2 ">
+              <li className="flex items-center gap-2 hover:scale-105 hover:text-[#5375f1] transition-all duration-200">
+                <Image
+                  src="/images/icon-check.svg"
+                  width={16}
+                  height={16}
+                  alt="bullet"
+                />
+                Unlimited websites
+              </li>
+              <li className="flex items-center gap-2 hover:scale-105 hover:text-[#5375f1] transition-all duration-200">
+                <Image
+                  src="/images/icon-check.svg"
+                  width={16}
+                  height={16}
+                  alt="bullet"
+                />
+                100% data ownership
+              </li>
+              <li className="flex items-center gap-2 hover:scale-105 hover:text-[#5375f1] transition-all duration-200">
+                <Image
+                  src="/images/icon-check.svg"
+                  width={16}
+                  height={16}
+                  alt="bullet"
+                />
+                Email reports
+              </li>
+            </ul>
+
+            <button
+              type="button"
+              onClick={() => {
+                confetti({
+                  particleCount: 120,
+                  spread: 70,
+                  origin: { y: 0.6 },
+                });
+              }}
+              className="bg-[#293356] dark:bg-[#5375f1] dark:text-[#eeeff0] rounded-full w-full md:w-1/2 p-2 text-[#bdccff]
+             hover:scale-105 active:scale-95 transition-transform duration-200"
+            >
+              Start my trial
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
