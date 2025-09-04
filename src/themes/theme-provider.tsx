@@ -10,7 +10,7 @@ export default function ThemeProviderWrapper({
   children: React.ReactNode;
 }) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark">
+    <ThemeProvider attribute="class" defaultTheme="light">
       {/* Optional: fixed theme toggle */}
       <div className="absolute top-4 right-4 z-50">
         <ThemeSwitch />
