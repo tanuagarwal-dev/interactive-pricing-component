@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend Mentor - Interactive Pricing Component Solution
 
-## Getting Started
+This is a solution to the [Interactive Pricing Component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-pricing-component-t0m8PIyY8).  
+Frontend Mentor challenges help you improve your coding skills by building realistic projects. ✨
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Table of contents
+
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [Features](#features)
+  - [What I learned](#what-i-learned)
+- [Author](#author)
+
+---
+
+## Overview
+
+### The challenge
+
+Users should be able to:
+
+- View the optimal layout for the app depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Use the slider and toggle to see prices for different page view numbers
+- Toggle dark/light mode
+
+### Screenshot
+
+![Desktop Preview]
+<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/771fb118-d409-4423-abf8-07ea434476ae" />
+<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/3aec8b13-1892-4ad0-b710-e5cc9d9f8957" />
+
+
+![Mobile Preview]
+<img width="651" height="892" alt="image" src="https://github.com/user-attachments/assets/7f5b698c-72b8-4aba-8e07-af150bd9c64f" />
+<img width="613" height="895" alt="image" src="https://github.com/user-attachments/assets/7cea1d33-2a0a-4b2d-b9fd-34bb8cffc70a" />
+
+
+
+---
+
+### Links
+
+- Solution URL: [here]([https://your-solution-url.com](https://github.com/tanuagarwal-dev/interactive-pricing-component)
+- Live Site URL: [here](https://interactive-pricing-component-chi-peach.vercel.app/)
+
+---
+
+## My process
+
+### Built with
+
+- Semantic **HTML5**
+- **CSS custom properties**
+- **Flexbox**
+- **CSS Grid**
+- **Mobile-first workflow**
+- **React** + **Next.js 13 App Router**
+- **Tailwind CSS** with **shadcn/ui**
+- **next-themes** for dark mode toggle
+
+---
+
+### Features
+
+- 🎚️ Interactive pricing slider with gradient fill
+- 🌗 Dark/Light theme toggle (switch with emoji ☀️ 🌙)
+- 🎨 Custom styled slider thumb with shadow & icon
+- ✨ Animated floating background circles
+- 📱 Responsive design (mobile → desktop)
+
+---
+
+### What I learned
+
+- How to implement a **custom range slider** with a gradient background and a glowing thumb:
+
+```css
+input[type="range"]::-webkit-slider-thumb {
+  background-color: #10d5c2;
+  box-shadow: 0 0 15px #10d5c2; /* custom glow */
+}
 ```
+Using next-themes to toggle dark mode without hydration issues:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```
+const { theme, setTheme } = useTheme();
+<button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+  {theme === "dark" ? "☀️" : "🌙"}
+</button>
+```
+Applying dark mode filters to background SVGs:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+<div className="dark:invert dark:brightness-50"></div>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+## Author
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Frontend Mentor - [@tanuagarwal](https://www.frontendmentor.io/profile/tanu-agarwal0101)  
+- GitHub - [TanuAgarwal02](https://github.com/tanuagarwal-dev)  
