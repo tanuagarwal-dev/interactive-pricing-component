@@ -32,12 +32,12 @@ Users should be able to:
 
 ### Screenshot
 
-![Desktop Preview]
+
 <img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/771fb118-d409-4423-abf8-07ea434476ae" />
 <img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/3aec8b13-1892-4ad0-b710-e5cc9d9f8957" />
 
 
-![Mobile Preview]
+---
 <img width="651" height="892" alt="image" src="https://github.com/user-attachments/assets/7f5b698c-72b8-4aba-8e07-af150bd9c64f" />
 <img width="613" height="895" alt="image" src="https://github.com/user-attachments/assets/7cea1d33-2a0a-4b2d-b9fd-34bb8cffc70a" />
 
