@@ -13,6 +13,9 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Interactive Pricing",
   description: "Solution to Frontend Mentor interactive pricing component",
+  icons: {
+    icon: "/images/favicon-32x32.png",
+  }
 };
 
 export default function RootLayout({
